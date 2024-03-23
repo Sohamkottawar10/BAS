@@ -1,6 +1,10 @@
-import React from 'react'
+// Desc: Home page component
+import React, { useEffect } from 'react'
 import '../css/Home.css'
+
+
 const Home = () => {
+  
   return (
     <div className="hero">
         <div className="hero-content">
@@ -12,6 +16,7 @@ const Home = () => {
         </div>
         <div className="hero-image"></div>
     </div>
+
   )
 }
 

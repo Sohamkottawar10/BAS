@@ -2,17 +2,22 @@ import React from 'react'
 import '../css/AddStudent.css'
 import { useState } from 'react'
 import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
 
 const AddStudent = () => {
     const [name, setName] = useState('')
     const [username, setusername] = useState('')
     const [password, setPassword] = useState('')
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()  //used to prevent default sunmission.
         axios.post('http://localhost:3001/student/register', {name, username, password})
         .then(res => {
             console.log(res)   //res = response
+            if(res.data.registered){
+                navigate('/dashboard')
+            }
         })
         .catch(err => console.log(err))
     }

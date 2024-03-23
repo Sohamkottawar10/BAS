@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import '../css/Login.css'
 import axios from 'axios'
 
-const Login = () => {
+const Login = ({SetRole}) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [role, setRole] = useState('admin')
@@ -17,7 +17,11 @@ const Login = () => {
     .then(res => {
       console.log(res.data)
       if(res.data.login && res.data.role === 'admin') {
+        SetRole('admin')
         navigate('/dashboard')
+      } else if(res.data.login) {   // && res.data.role === 'student', if it is not admin then by default it is a student.
+        SetRole('student')
+        navigate('/student')
       }
     })                      
     .catch(err => console.log(err))
@@ -42,7 +46,7 @@ const Login = () => {
           <select name="role" id="role"
           onChange={(e) => setRole(e.target.value)}>
             <option value="admin">Admin</option>
-            <option value="customer">Customer</option>
+            <option value="student">Customer</option>
           </select>
         </div>
         <button className='btn-login' onClick={handleSubmit}>Login</button>
