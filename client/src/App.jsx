@@ -10,6 +10,7 @@ import Logout from './components/Logout'
 import AddBook from './components/AddBook'
 import axios from 'axios'
 import EditBook from './components/EditBook'
+import DeleteBook from './components/DeleteBook'
 
 
 function App() {
@@ -33,13 +34,14 @@ function App() {
     <Navbar role = {role}/>
     <Routes>
       <Route path='/' element={<Home />}></Route>
-      <Route path='/books' element={<Books />}></Route>
+      <Route path='/books' element={<Books role = { role } />}></Route>
       <Route path='/login' element={<Login SetRole = {SetRole}/>}></Route>
       <Route path='/dashboard' element={<Dashboard />}></Route>
       <Route path='/addstudent' element={<AddStudent />}></Route>
       <Route path='/logout' element={<Logout SetRole = {SetRole}/>}></Route>
       <Route path='/addbook' element={<AddBook />}></Route>
       <Route path='/book/:id' element={<EditBook />}></Route>
+      <Route path='/delete/:id' element={<DeleteBook />}></Route>
 
     </Routes>
 

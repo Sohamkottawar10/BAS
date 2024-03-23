@@ -25,7 +25,7 @@ const AddStudent = () => {
   return (
     <div className="student-form-container">
         <form action="" className="student-form" onSubmit={handleSubmit}>
-            <h2>Add Student</h2>  <br/>
+            <h2>Add Customer</h2>  <br/>
             <div className="form-group">
                 <label htmlFor="name">Name:</label>
                 <input type="text" id="name" placeholder='Enter Name'

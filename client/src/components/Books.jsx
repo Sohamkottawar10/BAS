@@ -2,8 +2,9 @@ import React from 'react'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import BookCard from './BookCard'
+import SearchBooks from './SearchBooks' // Import the SearchBar component. This search bar will be visible whenever the books button is clicked.
 
-const Books = () => {
+const Books = ({role}) => {
   const [books, setBooks] = useState([])
   useEffect(() => {                             //fetching data from the server
     axios.get('http://localhost:3001/book/books')
@@ -14,9 +15,10 @@ const Books = () => {
   }, [])
   return (
     <div className="book-list">
+      <SearchBooks books={books} /> 
       {
         books.map(book => {
-          return <BookCard book={book} key={book._id} ></BookCard>
+          return <BookCard book={book} key={book._id} role={role}></BookCard>
         })
       }
     </div>

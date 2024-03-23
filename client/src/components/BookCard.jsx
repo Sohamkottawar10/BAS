@@ -2,7 +2,7 @@ import React from 'react'
 import '../css/BookCard.css'
 import {Link} from 'react-router-dom'
 
-const BookCard = ({book}) => {
+const BookCard = ({book, role}) => {
     const {name, author, imageUrl} = book
   return (
     <div className='book-card'>
@@ -11,10 +11,13 @@ const BookCard = ({book}) => {
             <h3>{name}</h3>
             <p>{author}</p>
         </div>
+        {role === "admin" &&    //only admin can see the edit and delete button
         <div className="book-actions">
-            <button><Link to={`/book/${book._id}`}>Edit</Link></button>
-            <button className="btn">Delete</button>
-        </div>
+        <button><Link to={`/book/${book._id}`} className='btn-link'>Edit</Link></button>
+        <button><Link to={`/delete/${book._id}`} className='btn-link'>Delete</Link></button>
+      </div>
+        }
+        
     </div>
   )
 }
