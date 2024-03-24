@@ -21,7 +21,7 @@ const Login = ({SetRole}) => {
         navigate('/dashboard')
       } else if(res.data.login) {   // && res.data.role === 'student', if it is not admin then by default it is a student.
         SetRole('student')
-        navigate('/student')
+        navigate(`/student/${username}`)
       }
     })                      
     .catch(err => console.log(err))

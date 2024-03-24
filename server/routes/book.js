@@ -4,14 +4,23 @@ import { verifyAdmin } from './auth.js'
 
 const router = express.Router();
 
+//Add New book
 router.post('/add', verifyAdmin, async(req, res) => {
     try{
-        const {name, author, imageUrl} = req.body;    //destructuring the entered values.
+        const {name, author, imageUrl, noOfCopies, rackNumber, price, copiesSold, threshold, isbnNumber, publisher, addressOfPublisher} = req.body;    //destructuring the entered values.
 
         const newBook = new Book({
             name: name,
             author: author,
-            imageUrl: imageUrl
+            imageUrl: imageUrl,
+            noOfCopies: noOfCopies,
+            rackNumber: rackNumber,
+            price: price,
+            copiesSold: copiesSold,
+            threshold: threshold,
+            isbnNumber: isbnNumber,
+            publisher: publisher,
+            addressOfPublisher: addressOfPublisher,
         })
         await newBook.save()
         return res.json({added: true})
@@ -67,5 +76,18 @@ router.delete('/book/:id', async (req, res) => {
         return res.json({message: "Error in deleting book"})
     }
 })
+
+router.salesReceipt = async (req, res) => {
+    try{
+        const id = req.params.id;
+        const book = await Book.findById(req.params.id)
+        console.log(book)
+        return res.json(book)
+        
+    } catch(err) {
+        console.log(err)
+        return res.json({message: "Error in fetching book"})
+    }
+}
 
 export {router as bookRouter}

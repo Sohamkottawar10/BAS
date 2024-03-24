@@ -9,6 +9,14 @@ const EditBook = () => {
     const [name, setName] = useState('')
     const [author, setAuthor] = useState('')
     const [imageUrl, setImageUrl] = useState('')
+    const [noOfCopies, setnoOfCopies] = useState('')
+    const [rackNumber, setrackNumber] = useState('')
+    const [price, setprice] = useState(0)
+    const [copiesSold, setcopiesSold] = useState(0)
+    const [threshold, setthreshold] = useState(0)
+    const [isbnNumber, setisbnnumber] = useState('')
+    const [publisher, setpublisher] = useState('')
+    const [addressOfPublisher, setaddressOfPublisher] = useState('')
     const navigate = useNavigate()
 
     const {id} = useParams()  //useParams is used to get the parameters from the URL(here id)
@@ -20,13 +28,21 @@ const EditBook = () => {
             setName(res.data.name)
             setAuthor(res.data.author)
             setImageUrl(res.data.imageUrl)
+            setnoOfCopies(res.data.noOfCopies)
+            setrackNumber(res.data.rackNumber)
+            setprice(res.data.price)
+            setcopiesSold(res.data.copiesSold)
+            setthreshold(res.data.threshold)
+            setisbnnumber(res.data.isbnNumber)
+            setpublisher(res.data.publisher)
+            setaddressOfPublisher(res.data.addressOfPublisher)
         })
         .catch(err => console.log(err))
     }, [])
 
     const handleSubmit = async (e) => {
         e.preventDefault()  //used to prevent default sunmission.
-        axios.put('http://localhost:3001/book/book/'+id, {name, author, imageUrl})       //put is used to update the data.
+        axios.put('http://localhost:3001/book/book/'+id, {name, author, imageUrl, noOfCopies, rackNumber, price, copiesSold, threshold, isbnNumber, publisher, addressOfPublisher})       //put is used to update the data.
         .then(res => {
             console.log(res)   //res = response
             if(res.data.updated){

@@ -5,8 +5,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    min-height: 90vh; /* Change height to min-height */
     background-color: #301934;
+    overflow-y: auto; /* Add overflow-y to enable vertical scrolling */
 }
 
 .student-form {
@@ -15,6 +16,8 @@
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);  
     padding: 20px;
     width: 300px;  
+    max-height: 80vh; /* Add max-height to enable scrolling within the form */
+    overflow-y: auto; /* Add overflow-y to enable vertical scrolling within the form */
 }
 
 .student-form h2 {

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Fuse from 'fuse.js';
 import '../css/SearchBooks.css';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import BookCard from './BookCard'; // Import the BookCard component
 
 const SearchBar = ({ books }) => {
   const [search, setSearch] = useState('');
@@ -36,10 +38,9 @@ const SearchBar = ({ books }) => {
       />
       
       {results.map(({ item }) => (
-        <div key={item.id}>
-          <h2>{item.title}</h2>
-          <p>{item.author}</p>
-        </div>
+        <Link to={`/book/${item._id}`} key={item._id}> {/* Add this line */}
+          <BookCard book={item} /> {/* Use the BookCard component here */}
+        </Link> // And this line
       ))}
       </div>
     </div>
