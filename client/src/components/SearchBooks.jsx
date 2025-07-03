@@ -38,10 +38,15 @@ const SearchBar = ({ books }) => {
       />
       
       {results.map(({ item }) => (
-        <Link to={`/book/${item._id}`} key={item._id}> {/* Add this line */}
-          <BookCard book={item} /> {/* Use the BookCard component here */}
-        </Link> // And this line
-      ))}
+  // <Link to={`/book/${item._id}`} key={item._id}>
+    <BookCard book={item} />
+  // </Link>
+))}
+
+      {/* {results.map(({ item }) => (
+  <BookCard book={item} key={item._id} /> */}
+{/* ))} */}
+      
       </div>
     </div>
   );
